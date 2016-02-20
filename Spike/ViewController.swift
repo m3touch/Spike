@@ -19,7 +19,7 @@ class ViewController: UIViewController
         let api = APIManager()
         
         //OPTION 1:::                                                                /// Callback 2 another func
-        api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json", completion:didLoadData)
+        api.loadData(kJSON_URL as String, completion:didLoadData)
         
         //OPTION 2::: TRAIL ENCLOSURE
         /*api.loadData("https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json") {
