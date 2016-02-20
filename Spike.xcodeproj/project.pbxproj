@@ -74,6 +74,40 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		60D33F051C78E169001BC34B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		60D33F061C78E178001BC34B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				60F9307A1C78D97E002C0775 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		60D33F071C78E18A001BC34B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				60F9307C1C78D97E002C0775 /* Main.storyboard */,
+				60F930811C78D97E002C0775 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		60D33F081C78E1A4001BC34B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				60F9307F1C78D97E002C0775 /* Assets.xcassets */,
+				60F930841C78D97E002C0775 /* Info.plist */,
+				60F930781C78D97E002C0775 /* AppDelegate.swift */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		60F9306C1C78D97E002C0775 = {
 			isa = PBXGroup;
 			children = (
@@ -97,12 +131,10 @@
 		60F930771C78D97E002C0775 /* Spike */ = {
 			isa = PBXGroup;
 			children = (
-				60F930781C78D97E002C0775 /* AppDelegate.swift */,
-				60F9307A1C78D97E002C0775 /* ViewController.swift */,
-				60F9307C1C78D97E002C0775 /* Main.storyboard */,
-				60F9307F1C78D97E002C0775 /* Assets.xcassets */,
-				60F930811C78D97E002C0775 /* LaunchScreen.storyboard */,
-				60F930841C78D97E002C0775 /* Info.plist */,
+				60D33F081C78E1A4001BC34B /* Supporting Files */,
+				60D33F051C78E169001BC34B /* Model */,
+				60D33F061C78E178001BC34B /* Controller */,
+				60D33F071C78E18A001BC34B /* View */,
 			);
 			path = Spike;
 			sourceTree = "<group>";
@@ -484,6 +516,7 @@
 				60F9309F1C78D97E002C0775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60F930A01C78D97E002C0775 /* Build configuration list for PBXNativeTarget "SpikeTests" */ = {
 			isa = XCConfigurationList;
@@ -492,6 +525,7 @@
 				60F930A21C78D97E002C0775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		60F930A31C78D97E002C0775 /* Build configuration list for PBXNativeTarget "SpikeUITests" */ = {
 			isa = XCConfigurationList;
@@ -500,6 +534,7 @@
 				60F930A51C78D97E002C0775 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
