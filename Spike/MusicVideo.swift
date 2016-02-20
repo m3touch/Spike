@@ -22,6 +22,9 @@ class Videos
     private var _vLinkToiTunes:String
     private var _vReleaseDte:String
     
+    // This variable gets created from the UI
+    var vImageData:NSData? // nil || value
+    
     // Getters
     var vName: String { return _vName }
     var vImageUrl: String { return _vImageUrl }
