@@ -31,13 +31,43 @@ class APIManager
         let task = session.dataTaskWithURL(url) {
             (data, response, error) -> Void in
             
-            // Move back to the main thread
-            dispatch_async(dispatch_get_main_queue()) {
-                if error != nil {
+            if error != nil {
+                // Show the error to the VC
+                dispatch_async(dispatch_get_main_queue()) {
                     completion(result: (error!.localizedDescription))
-                } else {
-                    completion(result: "NSURLSession successful")
-                    print(data) // Will print the binary data
+                }
+                
+            } else {
+                // Have data in return
+                // print(data)
+                
+                // For JSONSerialization
+                do {
+                    /*
+                    .AllowFragments - top level object is not Array or Dictionary.
+                    Any type of string or value NSJSONSerialization requires the Do / Try / Catch
+                    Converts the NSDATA into a JSON Object and cast it to a Disctionary
+                    */
+                    
+                                      // Get data and convert to json object
+                    // data! <-- unwrap
+                    if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+                        as? [String: AnyObject] {
+                            
+                            print(json)
+                            
+                            let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                            dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                                dispatch_async(dispatch_get_main_queue()) {
+                                    completion(result:"JSONSerialization Successful")
+                                }
+                            }
+                            
+                    }
+                } catch {
+                    dispatch_async(dispatch_get_main_queue()) {
+                        completion(result: "error in NSJSONSerialization")
+                    }
                 }
             }
         }
