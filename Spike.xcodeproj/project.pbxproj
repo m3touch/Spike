@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		60D33F0A1C78E5BC001BC34B /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D33F091C78E5BC001BC34B /* APIManager.swift */; };
 		60F930791C78D97E002C0775 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F930781C78D97E002C0775 /* AppDelegate.swift */; };
 		60F9307B1C78D97E002C0775 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F9307A1C78D97E002C0775 /* ViewController.swift */; };
 		60F9307E1C78D97E002C0775 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F9307C1C78D97E002C0775 /* Main.storyboard */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		60D33F091C78E5BC001BC34B /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		60F930751C78D97E002C0775 /* Spike.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spike.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F930781C78D97E002C0775 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F9307A1C78D97E002C0775 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 		60D33F051C78E169001BC34B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				60D33F091C78E5BC001BC34B /* APIManager.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				60D33F0A1C78E5BC001BC34B /* APIManager.swift in Sources */,
 				60F9307B1C78D97E002C0775 /* ViewController.swift in Sources */,
 				60F930791C78D97E002C0775 /* AppDelegate.swift in Sources */,
 			);
