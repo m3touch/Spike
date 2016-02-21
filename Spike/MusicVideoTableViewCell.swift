@@ -30,7 +30,7 @@ class MusicVideoTableViewCell: UITableViewCell
     {
         musicTitle.text = video?.vName
         rank.text = ("\(video!.vRank)")
-        //musicImage.image = UIImage(named: "imageNotAvailable")
+        musicImage.image = UIImage(named: "imageNotAvailable")
         
         if video!.vImageData != nil
         {
@@ -40,6 +40,7 @@ class MusicVideoTableViewCell: UITableViewCell
         } else {
             // Download the image
             getVideoImage(video!, imageView: musicImage)
+            print("Get images in background thread")
         }
         
         

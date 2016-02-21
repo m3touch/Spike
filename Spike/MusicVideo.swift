@@ -41,7 +41,7 @@ class Videos
     
     // Initializers
     init (data: JSONDictionary)
-    {
+    {        
         // If we do not initialize all properties we will get error message
         // Return from initializer without initialixing all stored properties
         
@@ -58,7 +58,7 @@ class Videos
         }
         
         // The Video Image
-        if let img = data["in:image"] as? JSONArray, image = img[2] as? JSONDictionary, immage = image["label"] as? String
+        if let img = data["im:image"] as? JSONArray, image = img[2] as? JSONDictionary, immage = image["label"] as? String
         {
             _vImageUrl = immage.stringByReplacingOccurrencesOfString("100x100", withString: "600x600")
         } else {

@@ -93,6 +93,7 @@ class MusicVideoTVC: UITableViewController {
         for item in videos
         {
             print("name = \(item.vName)")
+            print("img = \(item.vImageUrl)")
         }
         
         // Init table view
