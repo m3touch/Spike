@@ -8,10 +8,11 @@
 
 import UIKit
 
-class ViewController: UIViewController
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     var videos = [Videos]()
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var displayLabel: UILabel!
     
     /// Load json from itunes
@@ -70,6 +71,11 @@ class ViewController: UIViewController
         {
             print("\(index) name = \(item.vName)")
         }
+        
+        
+        
+        // Init table view
+        initTableView()
     }
         
     
@@ -92,6 +98,57 @@ class ViewController: UIViewController
     {
         NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
+    
+    
+    
+    
+    
+    
+    
+    //MARK: TABLE INITIALIZATION
+    func initTableView()
+    {
+        print("init table data")
+        // Takke all the data
+        tableView.reloadData()
+    }
+
+    
+    
+    //MARK: TABLE DATA SOURCE PROTOCOLS
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int
+    {
+        return 1
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return videos.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    {
+        // Reuse identifier for the cell out of screen
+        let cell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        
+        // Get the video structure information from that index row
+        let video = videos[indexPath.row]
+        
+        // Add the label to the current cell
+        cell.textLabel?.text = ("\(indexPath.row+1)")
+        
+        cell.detailTextLabel?.text = video.vName
+        
+        return cell
+    }
+    
+    
+    
+    
+    
+    
+    
 
 }
 
