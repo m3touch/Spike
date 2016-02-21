@@ -15,7 +15,7 @@ import Foundation
 
 
 // MARK: Global Constants
-let kJSON_URL: String = "https://itunes.apple.com/us/rss/topmusicvideos/limit=50/json"
+let kJSON_URL: String = "https://itunes.apple.com/us/rss/topmusicvideos/limit=200/json"
 
 // MARK: Type Alias
 typealias JSONDictionary = [String: AnyObject]
