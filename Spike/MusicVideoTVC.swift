@@ -23,26 +23,7 @@ class MusicVideoTVC: UITableViewController {
         // Initialize the screen
         reachabilityStatusChanged()
         
-        // Call download information API
-        let api = APIManager()
-        //OPTION 1:::           /// Callback 2 another func
-        api.loadData(kJSON_URL, completion:didLoadData)
-    }
-    
-    
-    /// Completion callback when json data is loaded
-    func didLoadData(videos: [Videos])
-    {
-        print(">>>> \(reachabilityStatus)")
-        self.videos = videos
         
-        for item in videos
-        {
-            print("name = \(item.vName)")
-        }
-        
-        // Reload the data
-        self.tableView.reloadData()
     }
     
     
@@ -50,14 +31,98 @@ class MusicVideoTVC: UITableViewController {
     func reachabilityStatusChanged()
     {
         switch reachabilityStatus {
-        case NOACCESS : view.backgroundColor = UIColor.redColor()
-        //displayLabel.text = "No Internet"
-        case WIFI: view.backgroundColor = UIColor.greenColor()
-        //displayLabel.text = "Reachable with WIFI"
-        case WWAN : view.backgroundColor = UIColor.yellowColor()
-        //displayLabel.text = "Reachable with Cellular"
-        default:return
+        case NOACCESS :
+            
+            view.backgroundColor = UIColor.redColor()
+            
+            // move back to Main Queue (avoid presenting alert before the view has been loaded)
+            dispatch_async(dispatch_get_main_queue()){
+            
+                let alert = UIAlertController(title: "No Internet Access", message: "Please make sure you are connected to the Internet", preferredStyle: .Alert)
+            
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Default){
+                    action -> () in
+                    print("Cancel")
+                }
+            
+                let deleteAction = UIAlertAction(title: "Delete", style: .Destructive){
+                    action -> () in
+                    print("delete")
+                }
+            
+                let okAction = UIAlertAction(title: "OK", style: .Default) {
+                    action -> Void in
+                    print("ok")
+                
+                    //do something if you want
+                    //alert.dismissViewControllerAnimated(true, completion:nil)
+                }
+        
+                alert.addAction(okAction)
+                alert.addAction(cancelAction)
+                alert.addAction(deleteAction)
+            
+                self.presentViewController(alert, animated: true, completion: nil)
+            }
+        default:
+            view.backgroundColor = UIColor.greenColor()
+            if videos.count > 0
+            {
+                print("do not refresh API")
+            } else {
+                runAPI()
+            }
         }
+    }
+    
+    func runAPI()
+    {
+        // Call download information API
+        let api = APIManager()
+        //OPTION 1:::           /// Callback 2 another func
+        api.loadData(kJSON_URL, completion:didLoadData)
+    }
+    
+    /// Completion callback when json data is loaded
+    func didLoadData(videos: [Videos])
+    {
+        print(">>>> \(reachabilityStatus)")
+        
+        /*let alert = UIAlertController(title: (result), message: nil, preferredStyle: .Alert)
+        
+        let okAction = UIAlertAction(title: "OK", style: .Default) {
+        action -> Void in
+        //do something if you want
+        }
+        
+        alert.addAction(okAction)
+        self.presentViewController(alert, animated: true, completion: nil)*/
+        
+        self.videos = videos
+        
+        for item in videos
+        {
+            print("name = \(item.vName)")
+        }
+        
+        //        for i in 0..<videos.count
+        //        {
+        //            let video = videos[i]
+        //            print("\(i) name = \(video.vName)")
+        //        }
+        
+        for (index, item) in videos.enumerate()
+        {
+            print("\(index) name = \(item.vName)")
+        }
+        
+        // Init table view
+        self.tableView.reloadData()
+    }
+    
+    deinit
+    {
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: "ReachStatusChanged", object: nil)
     }
 
     // MARK: - Table view data source
