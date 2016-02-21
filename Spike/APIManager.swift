@@ -14,7 +14,7 @@ class APIManager
     // processes , when done the completion handler to another function that works with the result
     // Void special value, ignored
                                                 /// Callback
-    func loadData(urlString:String, completion: (result:String) -> Void)
+    func loadData(urlString:String, completion: /*(result:String)*/[Videos] -> Void)
     {
         
         // Uable NSURL caching by configuration
@@ -33,9 +33,12 @@ class APIManager
             
             if error != nil {
                 // Show the error to the VC
-                dispatch_async(dispatch_get_main_queue()) {
+                /*dispatch_async(dispatch_get_main_queue()) {
                     completion(result: (error!.localizedDescription))
-                }
+                }*/
+                
+                // Just print the error as log
+                print(error!.localizedDescription)
                 
             } else {
                 // Have data in return
@@ -52,21 +55,33 @@ class APIManager
                                       // Get data and convert to json object
                     // data! <-- unwrap
                     if let json = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
-                        as? JSONDictionary {
+                        as? JSONDictionary, feed = json["feed"] as? JSONDictionary, entries = feed["entry"] as?JSONArray
+                    {
+                        var videos = [Videos]()
+                        for entry in entries
+                        {
+                            let entry = Videos(data: entry as! JSONDictionary)
+                            videos.append(entry)
+                        }
+                        
+                        let i = videos.count
+                        print("iTunesApiManager - total count --> \(i)")
+                        print(" ");
                             
-                            print(json)
+                        //print(json)
                             
-                            let priority = DISPATCH_QUEUE_PRIORITY_HIGH
-                            dispatch_async(dispatch_get_global_queue(priority, 0)) {
-                                dispatch_async(dispatch_get_main_queue()) {
-                                    completion(result:"JSONSerialization Successful")
-                                }
+                        let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                        dispatch_async(dispatch_get_global_queue(priority, 0)) {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                //completion(result:"JSONSerialization Successful")
+                                completion(videos)
                             }
+                        }
                             
                     }
                 } catch {
                     dispatch_async(dispatch_get_main_queue()) {
-                        completion(result: "error in NSJSONSerialization")
+                        print("error in NSJSONSerialization")
                     }
                 }
             }
@@ -74,19 +89,4 @@ class APIManager
         // Execute the task
         task.resume()
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 }

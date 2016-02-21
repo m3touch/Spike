@@ -10,7 +10,9 @@ import UIKit
 
 class ViewController: UIViewController
 {
+    var videos = [Videos]()
 
+    /// Load json from itunes
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -29,12 +31,12 @@ class ViewController: UIViewController
     
     }
     
-    /// Callback
-    func didLoadData(result:String)
+    /// Completion callback when json data is loaded
+    func didLoadData(videos: [Videos])
     {
         //print(result)
         
-        let alert = UIAlertController(title: (result), message: nil, preferredStyle: .Alert)
+        /*let alert = UIAlertController(title: (result), message: nil, preferredStyle: .Alert)
         
         let okAction = UIAlertAction(title: "OK", style: .Default) {
             action -> Void in
@@ -42,7 +44,27 @@ class ViewController: UIViewController
         }
         
         alert.addAction(okAction)
-        self.presentViewController(alert, animated: true, completion: nil)
+        self.presentViewController(alert, animated: true, completion: nil)*/
+        self.videos = videos
+        
+        for item in videos
+        {
+            print("name = \(item.vName)")
+        }
+        
+//        for i in 0..<videos.count
+//        {
+//            let video = videos[i]
+//            print("\(i) name = \(video.vName)")
+//        }
+        
+        for (index, item) in videos.enumerate()
+        {
+            print("\(index) name = \(item.vName)")
+        }
+        
+        
+        
     }
 
 }
