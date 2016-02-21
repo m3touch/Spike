@@ -34,7 +34,7 @@ class ViewController: UIViewController
     /// Completion callback when json data is loaded
     func didLoadData(videos: [Videos])
     {
-        //print(result)
+        print(reachabilityStatus)
         
         /*let alert = UIAlertController(title: (result), message: nil, preferredStyle: .Alert)
         
