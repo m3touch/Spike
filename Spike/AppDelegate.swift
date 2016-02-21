@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //NSURLCache.setSharedURLCache(NSURLCache(memoryCapacity: 0, diskCapacity: 0, diskPath: nil));
         
         // Add observer
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityCanged:", name: kReachabilityChangedNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "reachabilityChanged:", name: kReachabilityChangedNotification, object: nil)
 
         // Listen to any changes of internet or connectivity
         internetCheck = Reachability.reachabilityForInternetConnection()
