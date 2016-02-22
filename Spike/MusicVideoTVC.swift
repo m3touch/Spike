@@ -120,6 +120,7 @@ class MusicVideoTVC: UITableViewController {
     
     private struct storyboard {
         static let cellReuseIdentifier = "cell"
+        static let segueIdentifier = "musicDetail"
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -133,6 +134,30 @@ class MusicVideoTVC: UITableViewController {
         
 
         return cell
+    }
+    
+    /// For navigation!
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        // Make sure that this segue is detail
+        if segue.identifier == storyboard.segueIdentifier
+        {
+            // Get the selected row index path
+            if let indexpath = tableView.indexPathForSelectedRow
+            {
+                // Get the information about that video
+                let video = videos[indexpath.row]
+                
+                // Cast the segue VC to our custom one
+                let dvc = segue.destinationViewController as! MusicVideoDetailVC
+                
+                // Set the video information
+                dvc.videos = video
+            }
+            
+        }
+        
     }
 
 }
